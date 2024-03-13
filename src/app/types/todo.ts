@@ -3,6 +3,7 @@ export interface TodoDto {
   id?: any;
   isActive: boolean;
   tasks?: TaskDto[] | any;
+  isCompleted?: boolean;
   description: string | any;
 }
 

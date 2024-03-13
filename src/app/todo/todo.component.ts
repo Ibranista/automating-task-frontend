@@ -23,6 +23,7 @@ export class TodoComponent {
     'description',
     'tasks',
     'edit',
+    'completed',
     'delete',
   ];
 
@@ -54,12 +55,22 @@ export class TodoComponent {
     this.todoHttpService.getAll().then((data: TodoDto[]) => {
       this.todos = data;
       this.dataSource = this.todos;
-      console.log('hello p', data);
     });
   }
 
   async deleteTodo(id: number) {
     await this.todoHttpService.delete(id);
+    this.fetchData();
+  }
+
+  async markIsComplete(isCompleted: boolean, name: string) {
+    // await this.todoHttpService.delete(id);
+    // console.log(isCompleted, name);
+    let index = this.todos.findIndex((item) => item.name === name);
+    let item = this.todos.splice(index, 1)[0];
+    item.isCompleted = isCompleted;
+    this.todos.splice(index, 0, item);
+    await this.todoHttpService.updateIsCompleted(name, { isCompleted });
     this.fetchData();
   }
 }

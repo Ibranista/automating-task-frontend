@@ -16,6 +16,7 @@ import { CreateToDoComponent } from './todo/createTodo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditTodoComponent } from './todo/editTodo.component';
 import { CreateTaskComponent } from './todo/createTask.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CreateTaskComponent } from './todo/createTask.component';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatCheckboxModule,
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

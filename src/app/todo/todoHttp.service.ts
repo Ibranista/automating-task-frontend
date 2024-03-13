@@ -39,6 +39,19 @@ export class TodoHttpService {
     return updatedTodo as TodoDto;
   }
 
+  async updateIsCompleted(name: string, todo: any): Promise<TodoDto> {
+    const response = await fetch(
+      `${this.baseUrl}/update-complete?name=${name}`,
+      {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(todo),
+      }
+    );
+    const updatedTodo = await response.json();
+    return updatedTodo as TodoDto;
+  }
+
   async delete(id: number): Promise<void> {
     await fetch(`${this.baseUrl}/${id}`, { method: 'DELETE' });
   }
